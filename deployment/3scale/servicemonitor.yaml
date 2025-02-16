@@ -1,0 +1,17 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: threescale-apicast-production-metrics
+  namespace: 3scale
+  labels:
+    app: 3scale-api-management
+spec:
+  endpoints:
+    - path: /metrics
+      port: metrics
+  selector:
+    matchLabels:
+      app: 3scale-api-management
+      threescale_component: apicast
+      threescale_component_element: production

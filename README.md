@@ -121,6 +121,8 @@ We will start by creating the project and setting up the policy artifacts needed
 - Using the deployed operator, create a Custom Policy Definition instance using [deployment/3scale/llm-metrics-policy.yaml](./deployment/3scale/llm-metrics-policy.yaml).
 - Using the deployed operator, create an APIManager instance using [deployment/3scale/apimanager.yaml](./deployment/3scale/apimanager.yaml).
 - Wait for all the Deployments (15) to finish.
+- Optional: Create a ServiceMonitor to collect and store API usage analytics as metrics in the cluster’s Prometheus instance using [deployment/3scale/servicemonitor.yaml](./deployment/3scale/servicemonitor.yaml)
+- Optional: If you have a Grafana instance, create a Dashboard using [deployment/3scale/grafanadashboard.yaml](./deployment/3scale/grafanadashboard.yaml) to visualize LLM usage and GPU consumption side by side, helping optimize resource allocation, and monitor performance trends.
 
 #### Configuration
 

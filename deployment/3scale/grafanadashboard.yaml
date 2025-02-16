@@ -1,0 +1,300 @@
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: maas-folder
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana" # update accordingly with your Grafana instance label
+  resyncPeriod: 5m
+  title: "MaaS Dashboard"
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: maas-dashboard
+  labels:
+    dashboards: grafana # update accordingly with your Grafana instance label
+spec:
+  folder: "MaaS Dashboard"
+  instanceSelector:
+    matchLabels:
+      dashboards: grafana # update accordingly with your Grafana folder label
+  json: |-
+    {
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": {
+              "type": "grafana",
+              "uid": "-- Grafana --"
+            },
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+          }
+        ]
+      },
+      "editable": true,
+      "fiscalYearStartMonth": 0,
+      "graphTooltip": 0,
+      "id": 4,
+      "links": [],
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "5a49134d-f504-404a-ace9-27192dd2be3b"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 0
+          },
+          "id": 15,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "expr": "sum(rate(llm_completion_tokens_count{service_system_name=\"$llm_completion_tokens_count\"}[1m]))",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A",
+              "useBackend": false
+            }
+          ],
+          "title": "Tokens Count - $llm_completion_tokens_count",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "5a49134d-f504-404a-ace9-27192dd2be3b"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 0
+          },
+          "id": 16,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "11.3.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "5a49134d-f504-404a-ace9-27192dd2be3b"
+              },
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "expr": "DCGM_FI_PROF_PIPE_TENSOR_ACTIVE{exported_namespace=\"llm-hosting\", exported_pod=~\"$DCGM_FI_PROF_PIPE_TENSOR_ACTIVE.*\"}",
+              "fullMetaSearch": false,
+              "hide": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A",
+              "useBackend": false
+            }
+          ],
+          "title": "GPU Tensor Core Utilization - $llm_completion_tokens_count",
+          "type": "timeseries"
+        }
+      ],
+      "preload": false,
+      "schemaVersion": 40,
+      "tags": [],
+      "templating": {
+        "list": [
+          {
+            "current": {
+              "text": "granite-8b-code-instruct",
+              "value": "granite-8b-code-instruct"
+            },
+            "definition": "label_values(service_system_name)",
+            "label": "LLM",
+            "name": "llm_completion_tokens_count",
+            "options": [],
+            "query": {
+              "qryType": 1,
+              "query": "label_values(service_system_name)",
+              "refId": "PrometheusVariableQueryEditor-VariableQuery"
+            },
+            "refresh": 1,
+            "regex": "",
+            "type": "query"
+          },
+          {
+            "current": {
+              "text": "granite-8b-code-instruct-128k",
+              "value": "granite-8b-code-instruct-128k"
+            },
+            "definition": "label_values({exported_namespace=\"llm-hosting\"},exported_pod)",
+            "label": "Deployment",
+            "name": "DCGM_FI_PROF_PIPE_TENSOR_ACTIVE",
+            "options": [],
+            "query": {
+              "qryType": 1,
+              "query": "label_values({exported_namespace=\"llm-hosting\"},exported_pod)",
+              "refId": "PrometheusVariableQueryEditor-VariableQuery"
+            },
+            "refresh": 1,
+            "regex": "^(.*?)-predictor.*$",
+            "type": "query"
+          }
+        ]
+      },
+      "time": {
+        "from": "now-6h",
+        "to": "now"
+      },
+      "timepicker": {},
+      "timezone": "browser",
+      "title": "LLM Usage vs GPU Usage",
+      "uid": "eed641yi0bjlsa",
+      "version": 19,
+      "weekStart": ""
+    }
